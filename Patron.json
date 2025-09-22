@@ -1,0 +1,13 @@
+{
+    "id": "IHJMOD",
+    "name": "Iheartjustice Mod",
+    "author": ["The Patrons"],
+    "description": "this mod is dedicated towards javi for everything he does, done by the patrons of his server <3",
+    "prefix": "PATRON",
+    "main_file": "Patron.lua",
+    "badge_colour": "3C3B6E",
+    "dependencies": [
+        "Steamodded (>=1.0.0~ALPHA-1225a)"
+    ],
+    "version": "1.0.0"
+}
