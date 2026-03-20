@@ -150,6 +150,126 @@ SMODS.Back({
 
 -- tarot swaps
 SMODS.Atlas{
+	key = "virgil",
+	path = "judgement2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("judgement", {
+		atlas = "virgil",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "bigbot",
+	path = "tower2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("tower", {
+		atlas = "bigbot",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "rogers",
+	path = "wheel2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("wheel_of_fortune", {
+		atlas = "rogers",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "mag",
+	path = "hierophant2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("heirophant", {
+		atlas = "mag",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "zero",
+	path = "strength2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("strength", {
+		atlas = "zero",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "crimson",
+	path = "empress2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("empress", {
+		atlas = "crimson",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "hsien",
+	path = "hermit2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("hermit", {
+		atlas = "hsien",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "doctor",
+	path = "magician2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("magician", {
+		atlas = "doctor",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "okami",
+	path = "sun2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("sun", {
+		atlas = "okami",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
+	key = "stryder",
+	path = "moon2.png",
+	px = 71,
+	py = 95
+}
+SMODS.Consumable:take_ownership("moon", {
+		atlas = "stryder",
+		pos = { x = 0, y = 0 }
+	},
+	true
+)
+SMODS.Atlas{
 	key = "forgor",
 	path = "justice2.png",
 	px = 71,
@@ -871,7 +991,7 @@ loc_txt = {
 		"{C:inactive}thats out of my pay grade){}"
 		}
 },
-	config = { extra = { Xmult = 53 } },
+	config = { extra = { Xmult = 193 } },
 	rarity = 4,
 	atlas = 'patron',
 	pos = { x = 0, y = 0 },
@@ -904,8 +1024,8 @@ key = 'teemo',
 loc_txt = {
 	name = 'Teemo',
 	text = {
-		"in the scout handbook, it says:",
-		"'gain {C:mult}+#1#{} mult if played hand is high card'"
+		"In the Scout Handbook, it says:",
+		"'Gain {C:mult}+#1#{} Mult if played hand is {C:attention}High Card{}'"
 		}
 },
 	config = { extra = { mult = 40, type = 'High Card'} },
@@ -1195,7 +1315,7 @@ SMODS.Joker{
 	loc_txt = {
 	name = 'The First Vent puzzle',
 		text = {
-			"{C:green}#2# in #3#{} chance for {X:mult,C:white}X#1#{}",
+			"{C:green}1 in 4{} chance for {X:mult,C:white}X#1#{}",
 			"after every miss, the odds increase",
 			"{C:inactive}is this card broken???{}"
 		},
@@ -1207,11 +1327,11 @@ SMODS.Joker{
 	eternal_compat = true,
 	rarity = 3,
 	cost = 6,
-	config = { extra = { Xmult = 5, odds = 3} },
+	config = { extra = { Xmult = 5, odds = 4} },
 	atlas = 'puzzle2',
 	pos = { x = 0, y = 0 },
 	loc_vars = function(self, info_queue, card)
-	return { vars = { card.ability.extra.Xmult } }
+	return { vars = { card.ability.extra.Xmult, (G.GAME.probabilities.normal or 1), card.ability.extra.odds} }
 	end,
 	calculate = function(self, card, context)
 		if context.joker_main then
@@ -1386,8 +1506,8 @@ SMODS.Joker{
 	loc_txt = {
 	name = 'legally distinct iron head jirachi',
 		text = {
-			"{C:green}#2# in #3#{} chance to flinch the round",
-			"otherwise, flinch self",
+			"{C:green}#2# in #3#{} chance to {C:attention}Flinch{} the round",
+			"otherwise, {C:attention}flinch self{}",
 			"{C:inactive}(gain another hand if round is flinched)"
 			
 		},
@@ -1510,8 +1630,8 @@ SMODS.Joker{
 	loc_txt = {
 	name = 'Two Chicago Pizzas',
 		text = {
-			"if played hand is a pair, gain {C:attention}$1{}",
-			"gain another dollar per consecutive pair",
+			"if played hand is a {C:attention}Pair,{} gain {C:attention}$1{}",
+			"gain another dollar per {C:attention}consecutive pair{}",
 			"{C:inactive}currently{} {C:attention}$#1#{}"
 		},
 	},
@@ -1646,7 +1766,7 @@ SMODS.Joker{
 	key = "kanenmushie",
 	loc_txt = {
 		name = 'The SouthWest Sleepers',
-			text = {"after every blind,",
+			text = {"after every {C:attention}Blind{}",
 					"gain {C:chips}+24{} chips",
 					"currently {C:chips}+#1#{} chips",
 					"{C:inactive}i wasnt told anything about having{}",
@@ -1696,7 +1816,8 @@ SMODS.Joker{
 		name = 'The Gala cost fallacy',
 			text = {"all rerolls become {C:attention}Free{}",
 					"every purchasable item is now {C:attention}75%{} off",
-					"{C:attention}Clearance sale/Liquidation{} override this effect",
+					"{C:attention}if another discount applicable card is purchased{}",
+					"{C:attention}then this effect is overriden{}",
 					"{C:inactive}blueprint next. trust.{}"
 		},
 	},
@@ -1797,8 +1918,8 @@ SMODS.Joker{
 		name = 'The Orange Trickster',
 		text = {
 			"After {C:attention}2{} Rounds",
-			"Sell this card to give {C:attention}Polychrome{} or",
-			" {C:attention}Negative{} To a joker in your hand",
+			"Sell this card to give {C:edition}Polychrome{} or",
+			" {C:dark_edition}Negative{} To a joker in your hand",
 			"{C:inactive}(Currently {C:attention}#2#{}{C:inactive}/2){}",
 			"{C:inactive}what do you mean i play hipster characters??{}"
 		}
@@ -1948,7 +2069,7 @@ SMODS.Joker{
 			"For every {C:attention}Reroll{} in the shop",
 			"add {X:mult,C:white}X0.1{} mult to this card",
 			"{C:inactive}(Currently {X:mult,C:white}X#1#{}{C:inactive} mult)",
-			"{C:inactive}'I am whole again. I wear no mask. And I hate everything'"
+			"{C:inactive}'I am whole agai1n. I wear no mask. And I hate everything'"
 		}
 },
 	rarity = 2,
@@ -1999,7 +2120,7 @@ SMODS.Atlas{
 	loc_txt = {
 		name = 'Raccoon Justice',
 		text = {
-		"at the end of the round",
+		"at the {C:attention}end of the round{}",
 		"earn {C:attention}2 dollars{}",
 		"{C:inactive}*angry animal crossing noises*{}"
 		}
@@ -2168,7 +2289,7 @@ SMODS.Joker{
 		name = 'A Wolf Amongst Us',
 		text = {
 			"Add {C:mult}+3 mult{} if your",
-			"played hand isnt the most played",
+			"played hand {C:attention}isnt the most played{}",
 			"Currently {C:mult}+#2#",
 			"{C:inactive}'Once roamed here, often elsewhere.'{}"
 		}
@@ -2219,8 +2340,8 @@ SMODS.Joker{
 		name = 'Card Shark',
 		text = {
 		"Gain {X:mult,C:white}4x{} mult if",
-		"next hand {C:attention}has yet to be played{} or",
-		"{C:attention}has been played least{}",
+		"next hand {C:attention}Has Yet to be Played{} or",
+		"{C:attention}Has Been Played Least{}",
 		"{C:inactive}(formerly business){}"
 		}
 	},
@@ -2307,11 +2428,11 @@ SMODS.Atlas{
 SMODS.Joker{
 	key = 'tesleen',
 	loc_txt = {
-		name = 'doubling apple',
+		name = 'Doubling Apple',
 		text = {
-			"{C:green}1 in 4{} chance to retrigger",
-			"every joker card available in hand",
-			"{C:inactive}doubling your fun{}"
+			"{C:green}1 in 8{} chance to {C:attention}Retrigger{}",
+			"Every {C:attention}Joker{} available in hand",
+			"{C:inactive}Doubling your fun{}"
 		}
 	},
 	rarity = 3,
@@ -2323,7 +2444,7 @@ SMODS.Joker{
 	atlas = 'apple',
 	pos = { x = 0, y = 0 },
 	cost = 10,
-	config = { extra = { odds = 4 } },
+	config = { extra = { odds = 8 } },
 	loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.chips, (G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
     end,
@@ -2337,7 +2458,7 @@ SMODS.Joker{
 				< G.GAME.probabilities.normal / card.ability.extra.odds
 			then
             return {
-				message = "Again!!",
+				message = "Once More!!",
                 repetitions = 1,
 				card = card
             }
@@ -2351,7 +2472,7 @@ SMODS.Atlas{
 	key = "robot",
 	path = "robot.png",
 	px = 71,
-	py = 91
+	py = 95
 }
 SMODS.Joker{
 	key = 'faux_patron',
@@ -2416,7 +2537,7 @@ SMODS.Atlas{
 	key = "echo",
 	path = "echo.png",
 	px = 71,
-	py = 91
+	py = 95
 }
 --i hope you realize how much effort im putting into your god damn card echo
 SMODS.Joker{
@@ -2426,7 +2547,7 @@ SMODS.Joker{
 		text = {
 			"Give a {C:attention}Sun{} tarot card",
 			"at the end of the round",
-			"{C:green}1 in 8{} chance for it to be negative",
+			"{C:green}1 in 8{} chance for it to be {C:dark_edition}Negative{}",
 			"{C:inactive}echo i hope you know{}",
 			"{C:inactive}this one card drove me insane{}",
 			"{C:inactive}FUCK you{}"
