@@ -147,6 +147,66 @@ SMODS.Back({
 	end
 })
 
+SMODS.Atlas{
+	key = "gambit",
+	path = "kinetic.png",
+	px = 71,
+	py = 95
+}
+SMODS.Back{
+	key = "remy",
+	atlas = "gambit",
+    pos = { x = 0, y = 0 },
+	loc_txt = {
+        name = "Kinetic Credit",
+        text = {
+        "Start the game with {C:attention}-10 Dollars{}",
+		"And {C:attention}Four Credit Cards{}",
+		"{C:inactive}CREDIT CARD!!{}"
+        }
+    },
+    unlocked = true,
+    discovered = true,
+    config = { dollars = -14 },
+    loc_vars = function(self, info_queue, back)
+        return { vars = { self.config.dollars } }
+    end,
+		apply = function(self)
+   G.E_MANAGER:add_event(Event({
+			func = function()
+				if G.jokers then
+					local card = create_card("Joker", G.jokers, nil, 1, nil, nil, "j_credit_card", "")
+					card:add_to_deck()
+					card:start_materialize()
+					G.jokers:emplace(card)
+					
+				
+				 for i = 1, 1 do
+					local card = create_card("Joker", G.jokers, nil, 1, nil, nil, "j_credit_card", "")
+					card:add_to_deck()
+					card:start_materialize()
+					G.jokers:emplace(card)
+				 end
+
+				  for i = 1, 1 do
+					local card = create_card("Joker", G.jokers, nil, 1, nil, nil, "j_credit_card", "")
+					card:add_to_deck()
+					card:start_materialize()
+					G.jokers:emplace(card)
+				 end
+
+				 for i = 1, 1 do
+					local card = create_card("Joker", G.jokers, nil, 1, nil, nil, "j_credit_card", "")
+					card:add_to_deck()
+					card:start_materialize()
+					G.jokers:emplace(card)
+				 end
+					return true
+				 end
+		end
+				}))
+			end
+}
 
 -- tarot swaps
 SMODS.Atlas{
@@ -2481,7 +2541,7 @@ SMODS.Joker{
 		text = {
 			"{C:mult}+5{} mult for every {C:attention}Planet{}",
 			"{C:chips}+50{} chips for every {C:attention}Tarot{}",
-			"{C:inactive}Currently +#1# and +#2#{}",
+			"{C:inactive}Currently {C:mult}+#2#{}{C:inactive} and{} {C:chips}+#4#{}",
 			"{C:inactive}turns straight hands into gay hands{}",
 			"{C:inactive}youre not a patron.{}"
 		}
